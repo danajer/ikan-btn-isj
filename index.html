@@ -129,7 +129,7 @@
     <link rel="preload" href="script.js" as="script">
     
     <style>
-        /* Additional inline styles for the new WhatsApp number display */
+        /* Additional inline styles */
         .wa-number-display {
             background: #dcf8c5;
             padding: 12px 16px;
@@ -163,6 +163,23 @@
         }
         .wa-number-display a:hover {
             background: white;
+            text-decoration: underline;
+        }
+        .inline-wa-number {
+            background: #25d366;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+            display: inline-block;
+            margin: 0 4px;
+        }
+        .inline-wa-number a {
+            color: white;
+            text-decoration: none;
+        }
+        .inline-wa-number a:hover {
             text-decoration: underline;
         }
         @media (max-width: 480px) {
@@ -204,7 +221,10 @@
                 
                 <div class="bank-desc">
                     <p><strong>🏦 PT Bank Tabungan Negara (Persero) Tbk</strong> — bank milik negara yang fokus pada pembiayaan perumahan, terdaftar dan diawasi oleh <strong>Otoritas Jasa Keuangan (OJK)</strong> serta <strong>Bank Indonesia</strong>. Peserta penjaminan LPS.</p>
-                    <p>💡 Untuk bantuan terkait <strong>akun terblokir, lupa PIN, kendala transaksi, KPR, Tabungan BTN, atau informasi produk</strong>, tim support kami siap membantu melalui WhatsApp.</p>
+                    
+                    <!-- INI ADALAH BAGIAN YANG DIMINTA - NOMOR WA SUDAH DITAMBAHKAN -->
+                    <p>💡 Untuk bantuan terkait <strong>akun terblokir, lupa PIN, kendala transaksi, KPR, Tabungan BTN, atau informasi produk</strong>, tim support kami siap membantu melalui WhatsApp di nomor <strong class="inline-wa-number"><a href="https://wa.me/6282194565774" target="_blank" rel="noopener noreferrer">0821-9456-5774</a></strong>.</p>
+                    
                     <p>✅ <strong>Layanan Customer Service Resmi Tersedia</strong> — Klik tombol di bawah untuk menghubungi kami.</p>
                 </div>
 
@@ -223,7 +243,7 @@
                     Chat Customer Service via WhatsApp
                 </button>
 
-                <!-- NOMOR WHATSAPP DITAMPILKAN DI SINI (bagian bawah tulisan) -->
+                <!-- NOMOR WHATSAPP DISPLAY BAGIAN BAWAH -->
                 <div class="wa-number-display">
                     <svg viewBox="0 0 16 16" fill="currentColor">
                         <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.003c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592z"/>
@@ -260,11 +280,11 @@
                 <h2>Pertanyaan Umum (FAQ) Bank BTN</h2>
                 <div class="faq-item">
                     <h3>Bagaimana cara menghubungi customer service Bank BTN?</h3>
-                    <p>Anda dapat menghubungi customer service Bank BTN melalui WhatsApp dengan mengklik tombol Chat Customer Service di halaman ini atau melalui call center di 1500 286. Nomor WhatsApp resmi kami: <strong>0821-9456-5774</strong>.</p>
+                    <p>Anda dapat menghubungi customer service Bank BTN melalui WhatsApp di nomor <strong>0821-9456-5774</strong> atau melalui call center di 1500 286.</p>
                 </div>
                 <div class="faq-item">
                     <h3>Apa yang harus dilakukan jika akun Bank BTN terblokir?</h3>
-                    <p>Segera hubungi customer service melalui WhatsApp (0821-9456-5774) dengan mengklik tombol yang tersedia di halaman ini untuk dibantu proses pembukaan blokir akun Anda.</p>
+                    <p>Segera hubungi customer service melalui WhatsApp di <strong>0821-9456-5774</strong> untuk dibantu proses pembukaan blokir akun Anda.</p>
                 </div>
                 <div class="faq-item">
                     <h3>Apakah layanan WhatsApp Bank BTN resmi?</h3>
@@ -272,7 +292,7 @@
                 </div>
                 <div class="faq-item">
                     <h3>Bagaimana cara mengajukan KPR Bank BTN?</h3>
-                    <p>Hubungi customer service kami melalui WhatsApp (0821-9456-5774) untuk konsultasi KPR Bank BTN dan informasi persyaratan lengkapnya.</p>
+                    <p>Hubungi customer service kami melalui WhatsApp di <strong>0821-9456-5774</strong> untuk konsultasi KPR Bank BTN dan informasi persyaratan lengkapnya.</p>
                 </div>
             </div>
         </main>
@@ -281,7 +301,7 @@
     <!-- External JavaScript -->
     <script src="script.js"></script>
     
-    <!-- Performance monitoring -->
+    <!-- Performance monitoring & WA redirect -->
     <script>
         // Report Core Web Vitals
         if ('web-vitals' in window) {
@@ -292,16 +312,14 @@
             });
         }
 
-        // Simple script to handle WhatsApp link (mengarahkan ke nomor yang sama)
+        // Simple script to handle WhatsApp link
         (function() {
-            const waNumber = '6282194565774';  // Nomor WhatsApp (format internasional tanpa '+')
+            const waNumber = '6282194565774';
             const waLink = `https://wa.me/${waNumber}?text=Halo%20CS%20Bank%20BTN,%20saya%20membutuhkan%20bantuan.`;
             
-            // Element yang akan diarahkan ke WhatsApp
             const topBanner = document.getElementById('topWaBanner');
             const waBtn = document.getElementById('waButton');
             const hiddenLink = document.getElementById('hiddenWhatsAppLink');
-            const waDisplayLink = document.querySelector('.wa-number-display a'); // optional tambahan
 
             function openWhatsApp(e) {
                 if (e && e.preventDefault) e.preventDefault();
@@ -311,11 +329,7 @@
             if (topBanner) topBanner.addEventListener('click', openWhatsApp);
             if (waBtn) waBtn.addEventListener('click', openWhatsApp);
             if (hiddenLink) hiddenLink.addEventListener('click', openWhatsApp);
-            // Jika tombol WA display sudah punya href sendiri, biarkan, tapi kita pastikan juga
-            if (waDisplayLink && waDisplayLink.getAttribute('href') !== waLink) {
-                waDisplayLink.setAttribute('href', waLink);
-            }
         })();
     </script>
 </body>
-    </html>
+</html>
