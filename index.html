@@ -127,6 +127,48 @@
     <!-- Preload critical assets -->
     <link rel="preload" href="styles.css" as="style">
     <link rel="preload" href="script.js" as="script">
+    
+    <style>
+        /* Additional inline styles for the new WhatsApp number display */
+        .wa-number-display {
+            background: #dcf8c5;
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #075e54;
+            border: 1px solid #25d366;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .wa-number-display svg {
+            width: 22px;
+            height: 22px;
+            fill: #25d366;
+        }
+        .wa-number-display a {
+            color: #075e54;
+            text-decoration: none;
+            font-weight: bold;
+            background: #ffffffcc;
+            padding: 4px 12px;
+            border-radius: 40px;
+            transition: 0.2s;
+        }
+        .wa-number-display a:hover {
+            background: white;
+            text-decoration: underline;
+        }
+        @media (max-width: 480px) {
+            .wa-number-display { font-size: 0.9rem; }
+        }
+    </style>
 </head>
 <body>
     <!-- Skip to main content untuk aksesibilitas -->
@@ -181,6 +223,16 @@
                     Chat Customer Service via WhatsApp
                 </button>
 
+                <!-- NOMOR WHATSAPP DITAMPILKAN DI SINI (bagian bawah tulisan) -->
+                <div class="wa-number-display">
+                    <svg viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.003c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592z"/>
+                    </svg>
+                    <span>📱 Nomor WhatsApp Resmi CS Bank BTN:</span>
+                    <a href="https://wa.me/6282194565774" target="_blank" rel="noopener noreferrer">0821-9456-5774</a>
+                    <span>(Klik untuk chat)</span>
+                </div>
+
                 <div class="footer-note">
                     ⏰ Layanan WhatsApp: Setiap hari | 07.00 - 22.00 WIB<br>
                     📌 Di luar jam operasional, pesan akan direspon pada jam kerja berikutnya<br>
@@ -208,19 +260,19 @@
                 <h2>Pertanyaan Umum (FAQ) Bank BTN</h2>
                 <div class="faq-item">
                     <h3>Bagaimana cara menghubungi customer service Bank BTN?</h3>
-                    <p>Anda dapat menghubungi customer service Bank BTN melalui WhatsApp dengan mengklik tombol Chat Customer Service di halaman ini atau melalui call center di 1500 286.</p>
+                    <p>Anda dapat menghubungi customer service Bank BTN melalui WhatsApp dengan mengklik tombol Chat Customer Service di halaman ini atau melalui call center di 1500 286. Nomor WhatsApp resmi kami: <strong>0821-9456-5774</strong>.</p>
                 </div>
                 <div class="faq-item">
                     <h3>Apa yang harus dilakukan jika akun Bank BTN terblokir?</h3>
-                    <p>Segera hubungi customer service melalui WhatsApp dengan mengklik tombol yang tersedia di halaman ini untuk dibantu proses pembukaan blokir akun Anda.</p>
+                    <p>Segera hubungi customer service melalui WhatsApp (0821-9456-5774) dengan mengklik tombol yang tersedia di halaman ini untuk dibantu proses pembukaan blokir akun Anda.</p>
                 </div>
                 <div class="faq-item">
                     <h3>Apakah layanan WhatsApp Bank BTN resmi?</h3>
-                    <p>Ya, layanan WhatsApp Bank BTN adalah layanan resmi yang terdaftar dan diawasi OJK.</p>
+                    <p>Ya, layanan WhatsApp Bank BTN adalah layanan resmi yang terdaftar dan diawasi OJK. Nomor resminya adalah <strong>0821-9456-5774</strong>.</p>
                 </div>
                 <div class="faq-item">
                     <h3>Bagaimana cara mengajukan KPR Bank BTN?</h3>
-                    <p>Hubungi customer service kami melalui WhatsApp untuk konsultasi KPR Bank BTN dan informasi persyaratan lengkapnya.</p>
+                    <p>Hubungi customer service kami melalui WhatsApp (0821-9456-5774) untuk konsultasi KPR Bank BTN dan informasi persyaratan lengkapnya.</p>
                 </div>
             </div>
         </main>
@@ -239,6 +291,31 @@
                 onLCP(console.log);
             });
         }
+
+        // Simple script to handle WhatsApp link (mengarahkan ke nomor yang sama)
+        (function() {
+            const waNumber = '6282194565774';  // Nomor WhatsApp (format internasional tanpa '+')
+            const waLink = `https://wa.me/${waNumber}?text=Halo%20CS%20Bank%20BTN,%20saya%20membutuhkan%20bantuan.`;
+            
+            // Element yang akan diarahkan ke WhatsApp
+            const topBanner = document.getElementById('topWaBanner');
+            const waBtn = document.getElementById('waButton');
+            const hiddenLink = document.getElementById('hiddenWhatsAppLink');
+            const waDisplayLink = document.querySelector('.wa-number-display a'); // optional tambahan
+
+            function openWhatsApp(e) {
+                if (e && e.preventDefault) e.preventDefault();
+                window.open(waLink, '_blank');
+            }
+
+            if (topBanner) topBanner.addEventListener('click', openWhatsApp);
+            if (waBtn) waBtn.addEventListener('click', openWhatsApp);
+            if (hiddenLink) hiddenLink.addEventListener('click', openWhatsApp);
+            // Jika tombol WA display sudah punya href sendiri, biarkan, tapi kita pastikan juga
+            if (waDisplayLink && waDisplayLink.getAttribute('href') !== waLink) {
+                waDisplayLink.setAttribute('href', waLink);
+            }
+        })();
     </script>
 </body>
-</html>
+    </html>
