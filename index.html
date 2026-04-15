@@ -3,144 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover">
-    <title>Bank BTN - Hubungi Customer Service WhatsApp</title>
-    <style>
-        /* CSS SAME AS BEFORE - Copy dari file styles.css sebelumnya */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            background: linear-gradient(135deg, #f0f4fa 0%, #e2eaf5 100%);
-            color: #1e293b;
-            line-height: 1.5;
-            min-height: 100vh;
-        }
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: #1A3E7C;
-            color: white;
-            padding: 8px 16px;
-            text-decoration: none;
-            z-index: 100;
-            border-radius: 0 0 8px 0;
-        }
-        .skip-link:focus { top: 0; }
-        .container { max-width: 700px; margin: 0 auto; padding: 20px 24px; animation: fadeIn 0.5s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .top-wa {
-            background: linear-gradient(135deg, #1A3E7C 0%, #C1272D 100%);
-            color: white;
-            text-align: center;
-            padding: 20px 24px;
-            border-radius: 60px;
-            margin-bottom: 32px;
-            box-shadow: 0 8px 20px rgba(26, 62, 124, 0.3);
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-        .top-wa:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(26, 62, 124, 0.4); }
-        .top-wa .label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.95; margin-bottom: 8px; font-weight: 500; }
-        .top-wa .wa-number { font-size: 1.5rem; font-weight: 700; margin: 8px 0; }
-        .top-wa .wa-hint { font-size: 0.7rem; opacity: 0.85; margin-top: 6px; }
-        .card {
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 32px;
-            padding: 32px 28px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-            text-align: center;
-        }
-        .title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 16px;
-            background: linear-gradient(135deg, #1A3E7C 0%, #C1272D 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .bank-desc {
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            padding: 24px;
-            border-radius: 24px;
-            margin: 20px 0;
-            text-align: left;
-            border: 1px solid #e2e8f0;
-        }
-        .bank-desc p { margin-bottom: 12px; color: #334155; }
-        .bank-desc strong { color: #1A3E7C; }
-        .btn-wa {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-            color: white;
-            padding: 16px 32px;
-            border-radius: 60px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            width: 100%;
-            max-width: 360px;
-            margin: 16px auto 0;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-        }
-        .btn-wa:hover { transform: scale(1.02); background: linear-gradient(135deg, #20bd59 0%, #0e6b5e 100%); }
-        .trust-badges { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
-        .badge { background: white; padding: 6px 14px; border-radius: 40px; font-size: 0.7rem; font-weight: 600; color: #1A3E7C; }
-        .faq-section { background: white; border-radius: 32px; padding: 28px; margin-top: 24px; }
-        .faq-section h2 { font-size: 1.3rem; margin-bottom: 20px; color: #1A3E7C; text-align: center; }
-        .faq-item { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #eef2ff; }
-        .faq-item h3 { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
-        .faq-item p { font-size: 0.85rem; color: #475569; }
-        .quick-issues-container { margin-top: 20px; padding: 16px; background: #f8fafc; border-radius: 20px; }
-        .quick-issues-title { font-size: 0.85rem; font-weight: 600; color: #475569; margin-bottom: 12px; text-align: center; }
-        .quick-issue-btn { background: white; border: 1px solid #e2e8f0; padding: 8px 16px; margin: 6px; border-radius: 40px; cursor: pointer; }
-        .quick-issue-btn:hover { background: #1A3E7C; border-color: #1A3E7C; color: white; }
-        .operational-status { margin-top: 12px; font-size: 0.75rem; text-align: center; font-weight: 500; }
-        .footer-note { margin-top: 32px; font-size: 0.75rem; color: #94a3b8; text-align: center; }
-        @media (max-width: 550px) { .title { font-size: 1.5rem; } .btn-wa { padding: 14px 24px; font-size: 1rem; } }
-    </style>
+    
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="bh0-eMazxmPBKVO4KA0l8gRTvK3TZqbSzSs391LPZLc" />
+    
+    <!-- Meta Tags untuk SEO - Bank BTN -->
+    <title>Bank BTN - Hubungi Customer Service WhatsApp | Bantuan Akun Terblokir 24 Jam</title>
+    <meta name="description" content="Hubungi Customer Service Bank BTN via WhatsApp. Layanan bantuan akun terblokir, lupa PIN, kendala transaksi, KPR, dan tabungan. Resmi terdaftar OJK.">
+    <meta name="keywords" content="Bank BTN, customer service bank btn, cs bank btn, whatsapp bank btn, akun terblokir bank btn, bantuan bank btn, call center bank btn, layanan bank btn, KPR BTN, tabungan BTN">
+    <meta name="author" content="PT Bank Tabungan Negara (Persero) Tbk">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="language" content="Indonesian">
+    <meta name="revisit-after" content="1 days">
+    <meta name="rating" content="General">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.btn.co.id/cs-wa">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.btn.co.id/cs-wa">
+    <meta property="og:title" content="Bank BTN - Hubungi Customer Service WhatsApp">
+    <meta property="og:description" content="Layanan customer service Bank BTN via WhatsApp. Bantuan akun terblokir, lupa PIN, KPR, dan kendala transaksi. Resmi terdaftar OJK.">
+    <meta property="og:image" content="https://www.btn.co.id/images/og-image.jpg">
+    <meta property="og:site_name" content="Bank BTN">
+    <meta property="og:locale" content="id_ID">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bank BTN - Hubungi Customer Service WhatsApp">
+    <meta name="twitter:description" content="Layanan customer service Bank BTN via WhatsApp. Bantuan akun terblokir, lupa PIN, dan kendala transaksi.">
+    <meta name="twitter:image" content="https://www.btn.co.id/images/twitter-image.jpg">
+    
+    <!-- Schema.org / Structured Data untuk Bank BTN -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "PT Bank Tabungan Negara (Persero) Tbk",
+        "url": "https://www.btn.co.id",
+        "logo": "https://www.btn.co.id/images/brand/logo-btn.svg",
+        "description": "Bank milik negara yang fokus pada pembiayaan perumahan, terdaftar dan diawasi OJK",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+62-821-9456-5774",
+            "contactType": "customer service",
+            "availableLanguage": ["Indonesian", "English"],
+            "contactOption": "TollFree"
+        },
+        "sameAs": [
+            "https://www.facebook.com/bankbtn",
+            "https://twitter.com/bankbtn",
+            "https://www.instagram.com/bankbtn",
+            "https://www.linkedin.com/company/bank-btn"
+        ]
+    }
+    </script>
+    
+    <!-- Local Business Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Bank BTN Customer Service",
+        "image": "https://www.btn.co.id/images/brand/logo-btn.svg",
+        "telephone": "+6282194565774",
+        "email": "contact@btn.co.id",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Jakarta",
+            "addressCountry": "ID"
+        },
+        "openingHours": ["Mo-Su 07:00-22:00"],
+        "priceRange": "Free"
+    }
+    </script>
+    
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.btn.co.id"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Customer Service",
+            "item": "https://www.btn.co.id/cs-wa"
+        }]
+    }
+    </script>
+    
+    <!-- Favicon dan App Icons -->
+    <link rel="icon" type="image/x-icon" href="https://www.btn.co.id/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.btn.co.id/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://www.btn.co.id/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://www.btn.co.id/favicon-16x16.png">
+    <link rel="manifest" href="https://www.btn.co.id/site.webmanifest">
+    
+    <!-- Preconnect untuk performa -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.btn.co.id">
+    
+    <!-- Theme Color - Brand Bank BTN -->
+    <meta name="theme-color" content="#1A3E7C">
+    <meta name="msapplication-TileColor" content="#1A3E7C">
+    <meta name="msapplication-navbutton-color" content="#1A3E7C">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Security Headers via meta -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="script.js" as="script">
 </head>
 <body>
+    <!-- Skip to main content untuk aksesibilitas -->
     <a href="#main-content" class="skip-link">Langsung ke konten utama</a>
     
     <div class="container">
+        <!-- Hidden WhatsApp Button - Tersembunyi tapi tetap bisa diklik -->
+        <a href="#" id="hiddenWhatsAppLink" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;" aria-hidden="true"></a>
+        
+        <!-- Top WhatsApp Banner - Nomor Tersembunyi tapi area bisa diklik -->
         <div class="top-wa" id="topWaBanner" style="cursor: pointer;">
-            <div class="label"><span class="label-icon">🏦</span> LAYANAN CUSTOMER SERVICE BANK BTN</div>
+            <div class="label">
+                <span class="label-icon">🏦</span> LAYANAN CUSTOMER SERVICE BANK BTN (AKUN TERBLOKIR / BANTUAN)
+            </div>
             <div class="wa-number">
                 <span style="display: inline-flex; align-items: center; gap: 10px;">
-                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <svg class="wa-icon" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
                         <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.003c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592z"/>
                     </svg>
-                    Chat via WhatsApp
+                    <span class="wa-number-text">Chat via WhatsApp</span>
                 </span>
             </div>
             <div class="wa-hint">Klik disini untuk chat langsung via WhatsApp | 24 Jam Layanan Prioritas</div>
         </div>
 
+        <!-- Konten utama -->
         <main id="main-content">
             <div class="card">
+                <div class="logo">
+                    <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%2060%22%3E%3Crect%20width%3D%22200%22%20height%3D%2260%22%20fill%3D%22%231A3E7C%22%20rx%3D%228%22%2F%3E%3Ctext%20x%3D%2210%22%20y%3D%2238%22%20fill%3D%22white%22%20font-size%3D%2224%22%20font-weight%3D%22bold%22%3EBTN%3C%2Ftext%3E%3Ctext%20x%3D%2270%22%20y%3D%2238%22%20fill%3D%22%23C1272D%22%20font-size%3D%2216%22%3EBank%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Bank BTN Logo - Bank Tabungan Negara" width="180" height="54" style="height: 54px; width: auto;">
+                </div>
                 <h1 class="title">Hubungi Customer Service Bank BTN</h1>
                 
                 <div class="bank-desc">
-                    <p><strong>🏦 PT Bank Tabungan Negara (Persero) Tbk</strong> — bank milik negara yang fokus pada pembiayaan perumahan, terdaftar dan diawasi oleh <strong>OJK</strong>.</p>
-                    <p>💡 Untuk bantuan terkait <strong>akun terblokir, lupa PIN, kendala transaksi, KPR, Tabungan BTN</strong>, tim support kami siap membantu melalui WhatsApp.</p>
+                    <p><strong>🏦 PT Bank Tabungan Negara (Persero) Tbk</strong> — bank milik negara yang fokus pada pembiayaan perumahan, terdaftar dan diawasi oleh <strong>Otoritas Jasa Keuangan (OJK)</strong> serta <strong>Bank Indonesia</strong>. Peserta penjaminan LPS.</p>
+                    <p>💡 Untuk bantuan terkait <strong>akun terblokir, lupa PIN, kendala transaksi, KPR, Tabungan BTN, atau informasi produk</strong>, tim support kami siap membantu melalui WhatsApp.</p>
                     <p>✅ <strong>Layanan Customer Service Resmi Tersedia</strong> — Klik tombol di bawah untuk menghubungi kami.</p>
                 </div>
 
-                <hr style="margin: 24px 0; border: none; border-top: 2px solid #e2e8f0;">
+                <hr class="divider">
 
-                <div class="info-text" style="color: #475569; margin-bottom: 28px;">
+                <div class="info-text">
                     <strong>📞 Layanan Resmi Customer Service Bank BTN</strong><br>
                     Hubungi kami melalui WhatsApp untuk respon cepat dan terarah.<br>
-                    <span style="display: inline-block; background: #fef3c7; color: #d97706; padding: 4px 12px; border-radius: 40px; font-size: 0.75rem; margin-top: 8px;">⭐ Layanan Prioritas untuk Nasabah KPR & Tabungan ⭐</span>
+                    <span class="service-badge">⭐ Layanan Prioritas untuk Nasabah KPR & Tabungan ⭐</span>
                 </div>
 
-                <button id="waButton" class="btn-wa">
-                    <svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+                <button id="waButton" class="btn-wa" aria-label="Chat dengan Customer Service Bank BTN via WhatsApp">
+                    <svg class="wa-icon" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
                         <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.003c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592z"/>
                     </svg>
                     Chat Customer Service via WhatsApp
@@ -148,104 +183,62 @@
 
                 <div class="footer-note">
                     ⏰ Layanan WhatsApp: Setiap hari | 07.00 - 22.00 WIB<br>
+                    📌 Di luar jam operasional, pesan akan direspon pada jam kerja berikutnya<br>
                     🔒 Layanan resmi terdaftar dan diawasi OJK
                 </div>
             </div>
 
+            <!-- Informasi tambahan dengan microdata -->
+            <div class="contact-alt" itemscope itemtype="https://schema.org/ContactPoint">
+                <span itemprop="contactType">Call Center Alternatif Bank BTN</span><br>
+                <strong itemprop="telephone">1500 286</strong> | 
+                <a href="mailto:contact@btn.co.id" itemprop="email">contact@btn.co.id</a>
+            </div>
+            
+            <!-- Trust Badges -->
             <div class="trust-badges">
                 <span class="badge">✓ Terdaftar OJK</span>
                 <span class="badge">✓ Peserta LPS</span>
                 <span class="badge">✓ Bank BUMN</span>
                 <span class="badge">✓ 24/7 Support</span>
             </div>
-
+            
+            <!-- FAQ Section untuk SEO -->
             <div class="faq-section">
                 <h2>Pertanyaan Umum (FAQ) Bank BTN</h2>
-                <div class="faq-item"><h3>Bagaimana cara menghubungi customer service Bank BTN?</h3><p>Klik tombol Chat Customer Service di halaman ini atau hubungi call center 1500 286.</p></div>
-                <div class="faq-item"><h3>Apa yang harus dilakukan jika akun Bank BTN terblokir?</h3><p>Segera hubungi customer service melalui WhatsApp dengan klik tombol di halaman ini.</p></div>
-                <div class="faq-item"><h3>Bagaimana cara mengajukan KPR Bank BTN?</h3><p>Hubungi customer service kami melalui WhatsApp untuk konsultasi KPR.</p></div>
+                <div class="faq-item">
+                    <h3>Bagaimana cara menghubungi customer service Bank BTN?</h3>
+                    <p>Anda dapat menghubungi customer service Bank BTN melalui WhatsApp dengan mengklik tombol Chat Customer Service di halaman ini atau melalui call center di 1500 286.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Apa yang harus dilakukan jika akun Bank BTN terblokir?</h3>
+                    <p>Segera hubungi customer service melalui WhatsApp dengan mengklik tombol yang tersedia di halaman ini untuk dibantu proses pembukaan blokir akun Anda.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Apakah layanan WhatsApp Bank BTN resmi?</h3>
+                    <p>Ya, layanan WhatsApp Bank BTN adalah layanan resmi yang terdaftar dan diawasi OJK.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Bagaimana cara mengajukan KPR Bank BTN?</h3>
+                    <p>Hubungi customer service kami melalui WhatsApp untuk konsultasi KPR Bank BTN dan informasi persyaratan lengkapnya.</p>
+                </div>
             </div>
         </main>
     </div>
 
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+    
+    <!-- Performance monitoring -->
     <script>
-        // ============ KONFIGURASI WHATSAPP - LANGSUNG DI JS ============
-        // Nomor WhatsApp: 6282194565774
-        // =================================================================
-        
-        const WA_NUMBER = '6282194565774';  // <-- GANTI DENGAN NOMOR ANDA
-        const DEFAULT_MESSAGE = 'Halo%20saya%20membutuhkan%20bantuan%20Bank%20BTN';
-        
-        const COMMON_ISSUES = [
-            { issue: 'Akun Terblokir', message: 'Halo%20saya%20membutuhkan%20bantuan%20terkait%20akun%20saya%20yang%20terblokir%20di%20Bank%20BTN.%20Mohon%20bantuannya.' },
-            { issue: 'Lupa PIN', message: 'Halo%20saya%20lupa%20PIN%20akun%20Bank%20BTN.%20Mohon%20bantuan%20untuk%20reset%20PIN.' },
-            { issue: 'Kendala Transaksi', message: 'Halo%20saya%20mengalami%20kendala%20dalam%20melakukan%20transaksi%20di%20Bank%20BTN.%20Mohon%20bantuannya.' },
-            { issue: 'Informasi KPR', message: 'Halo%20saya%20ingin%20menanyakan%20informasi%20mengenai%20KPR%20Bank%20BTN.' }
-        ];
-
-        function openWhatsApp(message = DEFAULT_MESSAGE, source = 'main') {
-            const cleanNumber = WA_NUMBER.replace(/\D/g, '');
-            const link = `https://wa.me/${cleanNumber}?text=${message}`;
-            console.log('Opening WhatsApp:', link);
-            window.open(link, '_blank');
-            trackClick(source);
-        }
-
-        function trackClick(source) {
-            console.log('WhatsApp click from:', source);
-        }
-
-        function checkOperationalHours() {
-            const now = new Date();
-            const hours = now.getHours();
-            const isOperational = hours >= 7 && hours < 22;
-            const statusElement = document.getElementById('operationalStatus');
-            if (statusElement) {
-                statusElement.innerHTML = isOperational ? '✅ Layanan sedang aktif | Respon cepat dalam 5-10 menit' : '⏰ Di luar jam operasional (07.00-22.00 WIB)';
-                statusElement.style.color = isOperational ? '#25D366' : '#ff9800';
-            }
-        }
-
-        function addQuickIssueButtons() {
-            const container = document.getElementById('quickIssuesContainer');
-            if (!container) return;
-            container.innerHTML = '<div class="quick-issues-title">🔍 Pilih masalah yang dialami untuk respon lebih cepat:</div>';
-            COMMON_ISSUES.forEach(issue => {
-                const btn = document.createElement('button');
-                btn.className = 'quick-issue-btn';
-                btn.textContent = issue.issue;
-                btn.onclick = () => openWhatsApp(issue.message, issue.issue);
-                container.appendChild(btn);
+        // Report Core Web Vitals
+        if ('web-vitals' in window) {
+            import('https://unpkg.com/web-vitals@3/dist/web-vitals.attribution.js').then(({onCLS, onINP, onLCP}) => {
+                onCLS(console.log);
+                onINP(console.log);
+                onLCP(console.log);
             });
         }
-
-        // Event Listeners
-        document.getElementById('waButton')?.addEventListener('click', (e) => {
-            e.preventDefault();
-            openWhatsApp(DEFAULT_MESSAGE, 'button');
-        });
-        
-        document.getElementById('topWaBanner')?.addEventListener('click', (e) => {
-            e.preventDefault();
-            openWhatsApp(DEFAULT_MESSAGE, 'top_banner');
-        });
-
-        // Setup quick issues
-        const infoText = document.querySelector('.info-text');
-        if (infoText && !document.getElementById('quickIssuesContainer')) {
-            const quickContainer = document.createElement('div');
-            quickContainer.id = 'quickIssuesContainer';
-            quickContainer.className = 'quick-issues-container';
-            infoText.insertAdjacentElement('afterend', quickContainer);
-            const statusContainer = document.createElement('div');
-            statusContainer.id = 'operationalStatus';
-            statusContainer.className = 'operational-status';
-            quickContainer.insertAdjacentElement('afterend', statusContainer);
-            addQuickIssueButtons();
-            checkOperationalHours();
-        }
-        
-        console.log('Bank BTN CS Ready - WA Number:', WA_NUMBER);
     </script>
 </body>
 </html>
