@@ -1,9 +1,8 @@
-// Konfigurasi WhatsApp - Mengambil dari environment variable Netlify
-// Nomor WA disembunyikan di environment variable: VITE_WHATSAPP_NUMBER
-// Default fallback jika environment variable tidak tersedia
+// Konfigurasi WhatsApp - Nomor didefinisikan di JS (tersembunyi dari HTML)
+// Nomor tidak muncul di HTML source, hanya di JS yang bisa di-obfuscate
 const CONFIG = {
-    // WA_NUMBER akan diisi oleh Netlify build process
-    WA_NUMBER: '%VITE_WHATSAPP_NUMBER%', // Akan diganti Netlify saat build
+    // Nomor WhatsApp langsung didefinisikan di sini (tetap aman karena di file JS)
+    WA_NUMBER: '6282194565774',  // <-- Ganti dengan nomor Anda
     DEFAULT_MESSAGE: 'Halo%20saya%20membutuhkan%20bantuan%20Bank%20BTN',
     SERVICE_HOURS: {
         start: 7,
@@ -12,26 +11,9 @@ const CONFIG = {
     }
 };
 
-// Fungsi untuk mendapatkan nomor WhatsApp dari environment variable
+// Fungsi untuk mendapatkan nomor WhatsApp
 function getWhatsAppNumber() {
-    // Cek apakah masih ada placeholder atau sudah diganti
-    if (CONFIG.WA_NUMBER && CONFIG.WA_NUMBER !== '%VITE_WHATSAPP_NUMBER%') {
-        return CONFIG.WA_NUMBER;
-    }
-    
-    // Fallback: coba dari window.ENV (jika ada)
-    if (typeof window !== 'undefined' && window.ENV && window.ENV.WHATSAPP_NUMBER) {
-        return window.ENV.WHATSAPP_NUMBER;
-    }
-    
-    // Fallback: coba dari process.env (untuk development)
-    if (typeof process !== 'undefined' && process.env && process.env.VITE_WHATSAPP_NUMBER) {
-        return process.env.VITE_WHATSAPP_NUMBER;
-    }
-    
-    // Jika tidak ada, throw error atau return null
-    console.error('WhatsApp number not configured! Please set VITE_WHATSAPP_NUMBER environment variable.');
-    return null;
+    return CONFIG.WA_NUMBER;
 }
 
 // Data layanan yang sering ditanyakan
@@ -46,18 +28,23 @@ const COMMON_ISSUES = [
 function createWhatsAppLink(message = CONFIG.DEFAULT_MESSAGE) {
     const waNumber = getWhatsAppNumber();
     if (!waNumber) {
-        alert('Maaf, layanan WhatsApp sedang tidak tersedia. Silakan hubungi call center 1500 286.');
+        console.error('WhatsApp number not configured!');
         return null;
     }
-    return `https://wa.me/${waNumber}?text=${message}`;
+    // Bersihkan nomor dari karakter non-digit
+    const cleanNumber = waNumber.replace(/\D/g, '');
+    return `https://wa.me/${cleanNumber}?text=${message}`;
 }
 
 // Fungsi untuk membuka WhatsApp
 function openWhatsApp(message = CONFIG.DEFAULT_MESSAGE, source = 'main') {
     const link = createWhatsAppLink(message);
     if (link) {
+        console.log('Opening WhatsApp link:', link);
         window.open(link, '_blank');
         trackWhatsAppClick(source);
+    } else {
+        alert('Maaf, layanan WhatsApp sedang tidak tersedia. Silakan hubungi call center 1500 286.');
     }
 }
 
@@ -65,7 +52,9 @@ function openWhatsApp(message = CONFIG.DEFAULT_MESSAGE, source = 'main') {
 function checkOperationalHours() {
     try {
         const now = new Date();
-        const hours = now.getHours();
+        // Konversi ke WIB (UTC+7)
+        const wibTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Jakarta' }));
+        const hours = wibTime.getHours();
         const isOperational = hours >= CONFIG.SERVICE_HOURS.start && hours < CONFIG.SERVICE_HOURS.end;
         
         const statusElement = document.getElementById('operationalStatus');
@@ -118,23 +107,6 @@ function trackWhatsAppClick(source = 'main') {
     
     console.log('Tracking event:', eventData);
     
-    // Google Analytics 4 (if available)
-    if (typeof gtag !== 'undefined') {
-        gtag('event', 'whatsapp_click', {
-            'event_category': 'engagement',
-            'event_label': source,
-            'value': 1
-        });
-    }
-    
-    // Facebook Pixel (if available)
-    if (typeof fbq !== 'undefined') {
-        fbq('track', 'Contact', {
-            contact_method: 'WhatsApp',
-            source: source
-        });
-    }
-    
     // Simpan ke localStorage
     try {
         let clicks = localStorage.getItem('wa_clicks') || '[]';
@@ -147,12 +119,13 @@ function trackWhatsAppClick(source = 'main') {
     }
 }
 
-// Fungsi untuk inisialisasi event listeners (semua link WA disembunyikan)
+// Fungsi untuk inisialisasi event listeners
 function initializeEventListeners() {
     const waButton = document.getElementById('waButton');
     if (waButton) {
         waButton.addEventListener('click', (e) => {
             e.preventDefault();
+            console.log('WA Button clicked');
             openWhatsApp(CONFIG.DEFAULT_MESSAGE, 'button');
         });
     }
@@ -161,15 +134,8 @@ function initializeEventListeners() {
     if (topWaBanner) {
         topWaBanner.addEventListener('click', (e) => {
             e.preventDefault();
+            console.log('Top banner clicked');
             openWhatsApp(CONFIG.DEFAULT_MESSAGE, 'top_banner');
-        });
-    }
-    
-    const hiddenLink = document.getElementById('hiddenWhatsAppLink');
-    if (hiddenLink) {
-        hiddenLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            openWhatsApp(CONFIG.DEFAULT_MESSAGE, 'hidden_link');
         });
     }
 }
@@ -181,7 +147,9 @@ function lazyLoadImages() {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const img = entry.target;
-                    img.src = img.dataset.src || img.src;
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                    }
                     img.classList.add('loaded');
                     observer.unobserve(img);
                 }
@@ -201,16 +169,10 @@ function reportPerformance() {
         paintMetrics.forEach(metric => {
             console.log(`${metric.name}: ${metric.startTime}ms`);
         });
-        
-        const navigation = performance.getEntriesByType('navigation')[0];
-        if (navigation) {
-            console.log(`DOM Content Loaded: ${navigation.domContentLoadedEventEnd}ms`);
-            console.log(`Load Complete: ${navigation.loadEventEnd}ms`);
-        }
     }
 }
 
-// Keyboard shortcut: Ctrl + Shift + C
+// Keyboard shortcut: Ctrl + Shift + C untuk copy nomor
 function addKeyboardShortcut() {
     document.addEventListener('keydown', (e) => {
         if (e.ctrlKey && e.shiftKey && e.key === 'C') {
@@ -218,35 +180,33 @@ function addKeyboardShortcut() {
             const waNumber = getWhatsAppNumber();
             if (waNumber) {
                 navigator.clipboard.writeText(waNumber).then(() => {
-                    const notification = document.createElement('div');
-                    notification.textContent = '✅ Nomor WhatsApp tersalin!';
-                    notification.style.cssText = `
-                        position: fixed;
-                        bottom: 20px;
-                        right: 20px;
-                        background: #25D366;
-                        color: white;
-                        padding: 12px 20px;
-                        border-radius: 40px;
-                        font-size: 14px;
-                        z-index: 1000;
-                        animation: fadeInOut 2s ease;
-                    `;
-                    document.body.appendChild(notification);
-                    setTimeout(() => notification.remove(), 2000);
+                    showNotification('✅ Nomor WhatsApp tersalin!', '#25D366');
+                }).catch(() => {
+                    showNotification('❌ Gagal menyalin nomor', '#ff4444');
                 });
             }
         }
     });
 }
 
-// Register service worker for PWA (optional)
-function registerServiceWorker() {
-    if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
-        navigator.serviceWorker.register('/sw.js').catch(err => {
-            console.log('ServiceWorker registration failed: ', err);
-        });
-    }
+// Fungsi notifikasi
+function showNotification(message, bgColor = '#25D366') {
+    const notification = document.createElement('div');
+    notification.textContent = message;
+    notification.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: ${bgColor};
+        color: white;
+        padding: 12px 20px;
+        border-radius: 40px;
+        font-size: 14px;
+        z-index: 1000;
+        animation: fadeInOut 2s ease;
+    `;
+    document.body.appendChild(notification);
+    setTimeout(() => notification.remove(), 2000);
 }
 
 // Smooth scroll untuk anchor links
@@ -265,14 +225,20 @@ function addSmoothScroll() {
     });
 }
 
+// Debug function - cek apakah konfigurasi berjalan
+function debugConfig() {
+    console.log('=== Bank BTN CS Debug ===');
+    console.log('WA Number:', getWhatsAppNumber());
+    console.log('WA Link:', createWhatsAppLink());
+    console.log('Button element:', document.getElementById('waButton'));
+    console.log('Banner element:', document.getElementById('topWaBanner'));
+    console.log('=========================');
+}
+
 // Inisialisasi halaman
 function init() {
-    const waNumber = getWhatsAppNumber();
-    if (waNumber) {
-        console.log('Bank BTN CS Page initialized - WhatsApp service ready');
-    } else {
-        console.warn('Bank BTN CS Page initialized - WhatsApp number not configured!');
-    }
+    console.log('Bank BTN CS Page initialized');
+    debugConfig();
     
     // Report performance
     reportPerformance();
@@ -308,9 +274,6 @@ function init() {
     
     // Lazy load images
     lazyLoadImages();
-    
-    // Register service worker
-    registerServiceWorker();
 }
 
 // Run on DOM ready
@@ -318,9 +281,4 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
 } else {
     init();
-}
-
-// Export untuk testing (jika diperlukan)
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { CONFIG, createWhatsAppLink, checkOperationalHours, getWhatsAppNumber };
-      }
+            }
